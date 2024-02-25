@@ -2,8 +2,7 @@ open PRNG
 
 (** I'm encountering some strange and inconsistent behavior with lazy
     sequences of pseudo-random numbers. The PRNG being used is the
-    implementation of LXM from the PRINGO library, but I don't think
-    that's the issue.
+    implementation of LXM from the PRINGO library.
 
     The idea is simple: if we generate two lists of samples (say 10
     elements each) starting from the same initial PRNG seed for both,
@@ -76,7 +75,7 @@ let () =
   (* But something strange happens when we repeat this many
      times. Here we take the first 10 samples from the stream 10000
      times and check for when they are not equal to the original: *)
-  for i = 1 to 10000 do
+  for i = 1 to 10000000 do
     let samples2 = prefix 10 bs in
     if samples1 <> samples2 then begin
 
@@ -96,4 +95,8 @@ let () =
 (** What is going on here? I've verified that it happens with OCaml
     versions 4.14.1 and 5.1.1. I've also tried defining my own type of
     lazy streams and it still happens, so I don't think the problem is
-    with the Seq module. *)
+    with the Seq module.
+
+    EDIT: it seems to happen only with the LXM PRNG, and not Splitmix
+    or Chacha.
+*)
