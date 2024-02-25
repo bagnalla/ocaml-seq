@@ -75,7 +75,7 @@ let () =
   (* But something strange happens when we repeat this many
      times. Here we take the first 10 samples from the stream 10000
      times and check for when they are not equal to the original: *)
-  for i = 1 to 10000000 do
+  for i = 1 to 10000 do
     let samples2 = prefix 10 bs in
     if samples1 <> samples2 then begin
 
