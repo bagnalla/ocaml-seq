@@ -1,0 +1,4 @@
+(executable
+ (public_name ocaml_seq)
+ (name main)
+ (libraries ocaml_seq pringo))
