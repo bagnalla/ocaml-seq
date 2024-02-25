@@ -3,8 +3,8 @@ open PRNG
 (** The main idea being tested here is simple: if we generate two
     lists of samples (say 10 elements each) starting from the same
     initial PRNG seed for both, the lists should should contain the
-    same elements. This is obvious because the PRNG produces a
-    deterministic sequence of samples. *)
+    same elements. This is obvious because the PRNG is supposed to
+    produce a deterministic sequence of samples. *)
 
 (** Build a lazy bit sequence from a PRNG. *)
 let bits (rng : LXM.Pure.t) : bool Seq.t =
@@ -38,7 +38,7 @@ let () =
   (* But something strange happens when we repeat this many
      times. Here we take the first 10 samples from the stream 10000
      times and check for when they are not equal to the original: *)
-  for i = 1 to 10000 do
+  for i = 1 to 1000000 do
     let samples2 = prefix 10 bs in
     (* let samples2 = prefix 100000 bs in *)
     if samples1 <> samples2 then begin
@@ -58,4 +58,5 @@ let () =
 
 (** This seems to happen only with the LXM PRNG, and not Splitmix or
     Chacha. It also appears to be happening every time the GC runs a
-    minor collection! Run with [export OCAMLRUNPARAM='v=0x02']. *)
+    minor collection! Run with [export OCAMLRUNPARAM='v=0x02']
+    (although this doesn't seem to work on 5.1.1...). *)
