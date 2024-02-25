@@ -40,7 +40,6 @@ let () =
      times and check for when they are not equal to the original: *)
   for i = 1 to 1000000 do
     let samples2 = prefix 10 bs in
-    (* let samples2 = prefix 100000 bs in *)
     if samples1 <> samples2 then begin
 
         (* This happens sometimes! *)
