@@ -94,4 +94,6 @@ let () =
   done
 
 (** What is going on here? I've verified that it happens with OCaml
-    versions 4.14.1 and 5.1.1. *)
+    versions 4.14.1 and 5.1.1. I've also tried defining my own type of
+    lazy streams and it still happens, so I don't think the problem is
+    with the Seq module. *)
